@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <title>Drug Detail</title>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .drug-detail {
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .drug-detail h2 {
+        margin-bottom: 10px;
+        font-size: 28px;
+        color: #333;
+      }
+
+      .drug-detail p {
+        margin-bottom: 10px;
+        line-height: 1.6;
+      }
+
+      .back-button {
+        height: 50px;
+        display: inline-block;
+        margin-top: 20px; /* Adjusted margin from 500px to 20px */
+        padding: 10px 15px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+      }
+
+      .back-button:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <header id="header">
+      <div class="logo">
+        <a href="/search.html">
+          <img src="./images/logo.svg" alt="Pharma Map Icon" />
+          Pharma Map
+        </a>
+      </div>
+      <div class="hamburger" id="toggle">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+      <nav class="nav-bar" id="navbar">
+        <ul>
+          <li>
+            <a href="search.html">Search</a>
+          </li>
+          <li>
+            <a href="product.html" class="navlogin active">Products</a>
+          </li>
+          <li>
+            <a href="contact.html">Contact</a>
+          </li>
+          <li>
+            <a href="map.html">Map</a>
+          </li>
+          <div class="login">
+            <li>
+              <a href="login.html">Login</a>
+            </li>
+          </div>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="container">
+      <h1>Drug Detail</h1>
+      <div id="drug-detail" class="drug-detail"></div>
+      <a href="product.html" class="back-button">Back to Products</a>
+    </div>
+
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const drugName = urlParams.get("name");
+
+      if (drugName) {
+        fetch("./drug.json")
+          .then((response) => response.json())
+          .then((data) => {
+            const drug = data.find(
+              (d) => d.name.toLowerCase() === drugName.toLowerCase()
+            );
+
+            if (drug) {
+              const drugDetailContainer =
+                document.getElementById("drug-detail");
+              drugDetailContainer.innerHTML = `
+          <h2>${drug.name}</h2>
+          <p><strong>Category:</strong> ${drug.category}</p>
+          <p><strong>Details:</strong> ${drug.details}</p>
+          <p><strong>Price:</strong> ${drug.price}</p>
+          <p><strong>Position:</strong> ${drug.position}</p>
+          <img src="${drug.image}" alt="${drug.name}" width="300">
+        `;
+            } else {
+              document.getElementById(
+                "drug-detail"
+              ).innerHTML = `<p>Drug not found.</p>`;
+            }
+          })
+          .catch((error) => {
+            console.error("Error fetching drug data:", error);
+            document.getElementById(
+              "drug-detail"
+            ).innerHTML = `<p>Error fetching data: ${error.message}</p>`;
+          });
+      } else {
+        document.getElementById(
+          "drug-detail"
+        ).innerHTML = `<p>Drug name not provided.</p>`;
+      }
+    </script>
+  </body>
+</html>

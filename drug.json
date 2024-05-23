@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Drug A",
+    "category": "Category 1",
+    "details": "Details about Drug A",
+    "price": "$10",
+    "image": "images/drug_a.png",
+    "position": "A"
+  },
+  {
+    "name": "Drug B",
+    "category": "Category 2",
+    "details": "Details about Drug B",
+    "price": "$15",
+    "image": "/images/drug_b.png",
+    "position": "B"
+  },
+  {
+    "name": "Drug C",
+    "category": "Category 1",
+    "details": "Details about Drug C",
+    "price": "$20",
+    "image": "images/drug_c.png",
+    "position": "C"
+  },
+  {
+    "name": "Drug D",
+    "category": "Category 3",
+    "details": "Details about Drug D",
+    "price": "$25",
+    "image": "images/drug_d.png",
+    "position": "D"
+  },
+  {
+    "name": "Drug E",
+    "category": "Category 3",
+    "details": "Details about Drug E",
+    "price": "$30",
+    "image": "images/drug_b.png",
+    "position": "E"
+  },
+  {
+    "name": "Drug F",
+    "category": "Category 3",
+    "details": "Details about Drug F",
+    "price": "$35",
+    "image": "images/drug_a.png",
+    "position": "F"
+  },
+  {
+    "name": "Drug G",
+    "category": "Category 3",
+    "details": "Details about Drug G",
+    "price": "$40",
+    "image": "images/drug_d.png",
+    "position": "G"
+  }
+]
